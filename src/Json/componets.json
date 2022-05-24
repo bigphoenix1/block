@@ -1,0 +1,278 @@
+{
+  "ROIProcessing": {
+    "name": "ROIProcessing",
+    "input": {
+      "Name": "CalibratedBuffer",
+      "Type": "MILBufferData"
+    },
+    "output": [
+      {
+        "Name": "ResultROIBlobs",
+        "Type": "ROIBlobData"
+      }
+    ],
+    "control": {
+      "Name": "Test control Name",
+      "Type": "loop_count"
+    }
+  },
+  "InputComponent": {
+    "name": "InputComponent"
+  },
+  "OutputComponent": {
+    "name": "OutputComponent"
+  },
+  "Segmentation": {
+    "name": "Segmentation",
+    "input": {
+      "Name": "ChanneledBuffer",
+      "Type": "MILBufferData"
+    },
+    "output": [
+      {
+        "Name": "ResultROIBlobs",
+        "Type": "ROIBlobData"
+      }
+    ],
+    "control": {
+      "Name": "Test control Name",
+      "Type": "loop_count"
+    }
+  },
+  "MakeROIImages": {
+    "name": "MakeROIImages",
+    "input": {
+      "Name": "CalibratedBuffer",
+      "Type": "MILBufferData"
+    },
+    "output": [
+      {
+        "Name": "ChanneledBuffer",
+        "Type": "MILBufferData"
+      }
+    ],
+    "commonProps": {
+      "alg": {
+        "Type": "algorithm",
+        "isArray": "true"
+      },
+      "executer": {
+        "Type": "executer"
+      },
+      "execType": { "Type": "execution_type" },
+      "debugInfo": {
+        "Type": "debug_info"
+      },
+      "debugInfoKey": {
+        "Type": "debug_info_key"
+      }
+    }
+  },
+  "2DCalibration": {
+    "name": "2DCalibration",
+    "input": {
+      "Name": "InputBuffer",
+      "Type": "MILBufferData"
+    },
+    "output": [
+      {
+        "Name": "CalibratedBuffer",
+        "Type": "MILBufferData"
+      }
+    ],
+    "commonProps": {
+      "alg": {
+        "Type": "algorithm",
+        "isArray": "true"
+      },
+      "executer": {
+        "Type": "executer"
+      },
+      "execType": { "Type": "execution_type" },
+      "debugInfo": {
+        "Type": "debug_info"
+      },
+      "debugInfoKey": {
+        "Type": "debug_info_key"
+      }
+    }
+  },
+  "MakePatch": {
+    "name": "MakePatch",
+    "input": {
+      "Name": "ChanneledBuffer",
+      "Type": "MILBufferData"
+    },
+    "output": [
+      {
+        "Name": "PatchImage",
+        "Type": "ImagePatchData"
+      }
+    ],
+    "commonProps": {
+      "alg": {
+        "Type": "algorithm",
+        "isArray": "true"
+      },
+      "executer": {
+        "Type": "executer"
+      },
+      "execType": { "Type": "execution_type" },
+      "debugInfo": {
+        "Type": "debug_info"
+      },
+      "debugInfoKey": {
+        "Type": "debug_info_key"
+      }
+    }
+  },
+  "DrawROI": {
+    "name": "DrawROI",
+    "input": {
+      "Name": "CalibratedBuffer",
+      "Type": "MILBufferData"
+    },
+    "output": [
+      {
+        "Name": "ResultBuffer",
+        "Type": "MILBufferData"
+      }
+    ],
+    "commonProps": {
+      "alg": {
+        "Type": "algorithm",
+        "isArray": "true"
+      },
+      "executer": {
+        "Type": "executer"
+      },
+      "execType": { "Type": "execution_type" },
+      "debugInfo": {
+        "Type": "debug_info"
+      },
+      "debugInfoKey": {
+        "Type": "debug_info_key"
+      }
+    }
+  },
+  "MultiChannelInfer": {
+    "name": "MultiChannelInfer",
+    "input": {
+      "Name": "PatchImage",
+      "Type": "ImagePatchData"
+    },
+    "output": [
+      {
+        "Name": "PatchImage",
+        "Type": "ImagePatchData"
+      }
+    ],
+    "commonProps": {
+      "alg": {
+        "Type": "algorithm",
+        "isArray": "true"
+      },
+      "executer": {
+        "Type": "executer"
+      },
+      "execType": { "Type": "execution_type" },
+      "debugInfo": {
+        "Type": "debug_info"
+      },
+      "debugInfoKey": {
+        "Type": "debug_info_key"
+      }
+    }
+  },
+  "AssemblePatches": {
+    "name": "AssemblePatches",
+    "input": {
+      "Name": "PatchImage",
+      "Type": "ImagePatchData"
+    },
+    "output": [
+      {
+        "Name": "AssembledPatchImage",
+        "Type": "MILBufferData"
+      }
+    ],
+    "commonProps": {
+      "alg": {
+        "Type": "algorithm",
+        "isArray": "true"
+      },
+      "executer": {
+        "Type": "executer"
+      },
+      "execType": { "Type": "execution_type" },
+      "debugInfo": {
+        "Type": "debug_info"
+      },
+      "debugInfoKey": {
+        "Type": "debug_info_key"
+      }
+    }
+  },
+  "DiscardBlobsForExcludedArea": {
+    "name": "DiscardBlobsForExcludedArea",
+    "input": {
+      "Name": "AssembledPatchImage",
+      "Type": "MILBufferData"
+    },
+    "output": [
+      {
+        "Name": "AssembledPatchImage",
+        "Type": "MILBufferData"
+      }
+    ],
+    "commonProps": {
+      "alg": {
+        "Type": "algorithm",
+        "isArray": "true"
+      },
+      "executer": {
+        "Type": "executer"
+      },
+      "execType": { "Type": "execution_type" },
+      "debugInfo": {
+        "Type": "debug_info"
+      },
+      "debugInfoKey": {
+        "Type": "debug_info_key"
+      }
+    }
+  },
+  "CalculateBlobs": {
+    "name": "CalculateBlobs",
+    "input": {
+      "Name": "AssembledPatchImage",
+      "Type": "MILBufferData"
+    },
+    "output": [
+      {
+        "Name": "ResultROIBlobs",
+        "Type": "ROIBlobData"
+      },
+      {
+        "Name": "AssembledPatchImage",
+        "Type": "MILBufferData"
+      }
+    ],
+    "commonProps": {
+      "alg": {
+        "Type": "algorithm",
+        "isArray": "true"
+      },
+      "executer": {
+        "Type": "executer"
+      },
+      "execType": { "Type": "execution_type" },
+      "debugInfo": {
+        "Type": "debug_info"
+      },
+      "debugInfoKey": {
+        "Type": "debug_info_key"
+      }
+    }
+  }
+}

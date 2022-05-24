@@ -1,0 +1,165 @@
+{
+    "id": "demo@0.1.0",
+    "nodes": {
+        "1": {
+            "id": 1,
+            "data": {
+                "algorithm": [
+                    "UnwarpImageAlg"
+                ],
+                "execution_type": "eParallelInvoke",
+                "executer": "BaseExecuter",
+                "debug_info": "MockDebugInfo",
+                "debug_info_key": "UnwarpImage_1"
+            },
+            "module": {},
+            "inputs": {
+                "InputBuffer": {
+                    "connections": [
+                        {
+                            "node": 49,
+                            "output": "InputBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "outputs": {
+                "CalibratedBuffer": {
+                    "connections": [
+                        {
+                            "node": 2,
+                            "input": "CalibratedBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "position": [
+                -241.6507111127425,
+                -88.14145707535661
+            ],
+            "name": "2DCalibration"
+        },
+        "2": {
+            "id": 2,
+            "data": {},
+            "module": {
+                "loop_count": "2"
+            },
+            "inputs": {
+                "CalibratedBuffer": {
+                    "connections": [
+                        {
+                            "node": 1,
+                            "output": "CalibratedBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "outputs": {
+                "ResultROIBlobs": {
+                    "connections": [
+                        {
+                            "node": 50,
+                            "input": "ResultROIBlobs",
+                            "type": "ROIBlobData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "position": [
+                349.6139145150259,
+                -240.61686055196742
+            ],
+            "name": "ROIProcessing"
+        },
+        "49": {
+            "id": 49,
+            "data": {},
+            "module": {},
+            "inputs": {},
+            "outputs": {
+                "InputBuffer": {
+                    "connections": [
+                        {
+                            "node": 1,
+                            "input": "InputBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                },
+                "CalibratedBuffer": {
+                    "connections": []
+                },
+                "ChanneledBuffer": {
+                    "connections": []
+                },
+                "ResultBuffer": {
+                    "connections": []
+                },
+                "ResultROIBlobs": {
+                    "connections": []
+                },
+                "PatchImage": {
+                    "connections": []
+                },
+                "AssembledPatchImage": {
+                    "connections": []
+                }
+            },
+            "position": [
+                -924.5343770674323,
+                -16.42217229571918
+            ],
+            "name": "InputComponent"
+        },
+        "50": {
+            "id": 50,
+            "data": {},
+            "module": {},
+            "inputs": {
+                "InputBuffer": {
+                    "connections": []
+                },
+                "CalibratedBuffer": {
+                    "connections": []
+                },
+                "ChanneledBuffer": {
+                    "connections": []
+                },
+                "ResultBuffer": {
+                    "connections": []
+                },
+                "ResultROIBlobs": {
+                    "connections": [
+                        {
+                            "node": 2,
+                            "output": "ResultROIBlobs",
+                            "type": "ROIBlobData",
+                            "data": {}
+                        }
+                    ]
+                },
+                "PatchImage": {
+                    "connections": []
+                },
+                "AssembledPatchImage": {
+                    "connections": []
+                }
+            },
+            "outputs": {},
+            "position": [
+                954.3543813835962,
+                -90.76003833700499
+            ],
+            "name": "OutputComponent"
+        }
+    }
+}

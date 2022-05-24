@@ -1,0 +1,220 @@
+{
+    "id": "demo@0.1.0",
+    "nodes": {
+        "83": {
+            "id": 83,
+            "data": {},
+            "module": {},
+            "inputs": {},
+            "outputs": {
+                "InputBuffer": {
+                    "connections": []
+                },
+                "CalibratedBuffer": {
+                    "connections": [
+                        {
+                            "node": 84,
+                            "input": "CalibratedBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        },
+                        {
+                            "node": 85,
+                            "input": "CalibratedBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                },
+                "ChanneledBuffer": {
+                    "connections": []
+                },
+                "ResultBuffer": {
+                    "connections": []
+                },
+                "ResultROIBlobs": {
+                    "connections": []
+                },
+                "PatchImage": {
+                    "connections": []
+                },
+                "AssembledPatchImage": {
+                    "connections": []
+                }
+            },
+            "position": [
+                -1038.3436014196202,
+                -203.90656054189895
+            ],
+            "name": "InputComponent"
+        },
+        "84": {
+            "id": 84,
+            "data": {
+                "algorithm": [
+                    "ImageConversionAlg"
+                ],
+                "executer": "BaseExecuter",
+                "execution_type": "eParallelInvoke",
+                "debug_info": 0,
+                "debug_info_key": 0
+            },
+            "module": {},
+            "inputs": {
+                "CalibratedBuffer": {
+                    "connections": [
+                        {
+                            "node": 83,
+                            "output": "CalibratedBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "outputs": {
+                "ChanneledBuffer": {
+                    "connections": [
+                        {
+                            "node": 86,
+                            "input": "ChanneledBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "position": [
+                -337.97919064991794,
+                -339.293075050713
+            ],
+            "name": "MakeROIImages"
+        },
+        "85": {
+            "id": 85,
+            "data": {
+                "algorithm": [
+                    "ROIDrawingAlg"
+                ],
+                "executer": "BaseExecuter",
+                "execution_type": "eParallelInvoke",
+                "debug_info": 0,
+                "debug_info_key": 0
+            },
+            "module": {},
+            "inputs": {
+                "CalibratedBuffer": {
+                    "connections": [
+                        {
+                            "node": 83,
+                            "output": "CalibratedBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "outputs": {
+                "ResultBuffer": {
+                    "connections": [
+                        {
+                            "node": 87,
+                            "input": "ResultBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "position": [
+                -358.80780997374853,
+                173.61315622100292
+            ],
+            "name": "DrawROI"
+        },
+        "86": {
+            "id": 86,
+            "data": {},
+            "module": {
+                "loop_count": "3"
+            },
+            "inputs": {
+                "ChanneledBuffer": {
+                    "connections": [
+                        {
+                            "node": 84,
+                            "output": "ChanneledBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "outputs": {
+                "ResultROIBlobs": {
+                    "connections": [
+                        {
+                            "node": 87,
+                            "input": "ResultROIBlobs",
+                            "type": "ROIBlobData",
+                            "data": {}
+                        }
+                    ]
+                }
+            },
+            "position": [
+                167.95154805452444,
+                -309.16475111833
+            ],
+            "name": "Segmentation"
+        },
+        "87": {
+            "id": 87,
+            "data": {},
+            "module": {},
+            "inputs": {
+                "InputBuffer": {
+                    "connections": []
+                },
+                "CalibratedBuffer": {
+                    "connections": []
+                },
+                "ChanneledBuffer": {
+                    "connections": []
+                },
+                "ResultBuffer": {
+                    "connections": [
+                        {
+                            "node": 85,
+                            "output": "ResultBuffer",
+                            "type": "MILBufferData",
+                            "data": {}
+                        }
+                    ]
+                },
+                "ResultROIBlobs": {
+                    "connections": [
+                        {
+                            "node": 86,
+                            "output": "ResultROIBlobs",
+                            "type": "ROIBlobData",
+                            "data": {}
+                        }
+                    ]
+                },
+                "PatchImage": {
+                    "connections": []
+                },
+                "AssembledPatchImage": {
+                    "connections": []
+                }
+            },
+            "outputs": {},
+            "position": [
+                859.6701689930943,
+                -339.29292498634163
+            ],
+            "name": "OutputComponent"
+        }
+    }
+}

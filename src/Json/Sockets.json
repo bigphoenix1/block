@@ -1,0 +1,30 @@
+[
+    {
+        "name": "InputBuffer",
+        "type": "MILBufferData"
+    },
+    {
+        "name": "CalibratedBuffer",
+        "type": "MILBufferData"
+    },
+    {
+        "name": "ChanneledBuffer",
+        "type": "MILBufferData"
+    },
+    {
+        "name": "ResultBuffer",
+        "type": "MILBufferData"
+    },
+    {
+        "name": "ResultROIBlobs",
+        "type": "ROIBlobData"
+    },
+    {
+        "name": "PatchImage",
+        "type": "ImagePatchData"
+    },
+    {
+        "name": "AssembledPatchImage",
+        "type": "MILBufferData"
+    }
+]

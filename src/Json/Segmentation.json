@@ -1,0 +1,238 @@
+{
+  "id": "demo@0.1.0",
+  "nodes": {
+    "148": {
+      "id": 148,
+      "data": {},
+      "module": {},
+      "inputs": {},
+      "outputs": {
+        "InputBuffer": {
+          "connections": []
+        },
+        "CalibratedBuffer": {
+          "connections": []
+        },
+        "ChanneledBuffer": {
+          "connections": [
+            {
+              "node": 149,
+              "input": "ChanneledBuffer",
+              "type": "MILBufferData",
+              "data": {}
+            }
+          ]
+        },
+        "ResultBuffer": {
+          "connections": []
+        },
+        "ResultROIBlobs": {
+          "connections": []
+        },
+        "PatchImage": {
+          "connections": []
+        },
+        "AssembledPatchImage": {
+          "connections": []
+        }
+      },
+      "position": [-456.8744150904462, -74.04135937897155],
+      "name": "InputComponent"
+    },
+    "149": {
+      "id": 149,
+      "data": {
+        "algorithm": ["MakePatchAlg"],
+        "executer": "BaseExecuter",
+        "execution_type": "eParallelInvoke"
+      },
+      "module": {},
+      "inputs": {
+        "ChanneledBuffer": {
+          "connections": [
+            {
+              "node": 148,
+              "output": "ChanneledBuffer",
+              "type": "MILBufferData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "outputs": {
+        "PatchImage": {
+          "connections": [
+            {
+              "node": 150,
+              "input": "PatchImage",
+              "type": "ImagePatchData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "position": [137.76426582806744, -49.36305773705908],
+      "name": "MakePatch"
+    },
+    "150": {
+      "id": 150,
+      "data": {
+        "algorithm": ["MultiChannelInferAlg"],
+        "executer": "BaseExecuter",
+        "execution_type": "eParallelInvoke"
+      },
+      "module": {},
+      "inputs": {
+        "PatchImage": {
+          "connections": [
+            {
+              "node": 149,
+              "output": "PatchImage",
+              "type": "ImagePatchData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "outputs": {
+        "PatchImage": {
+          "connections": [
+            {
+              "node": 151,
+              "input": "PatchImage",
+              "type": "ImagePatchData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "position": [727.9183060001203, -45.7050946136431],
+      "name": "MultiChannelInfer"
+    },
+    "151": {
+      "id": 151,
+      "data": {
+        "algorithm": ["AssemblePatchImageAlg"],
+        "executer": "BaseExecuter",
+        "execution_type": "eParallelInvoke"
+      },
+      "module": {},
+      "inputs": {
+        "PatchImage": {
+          "connections": [
+            {
+              "node": 150,
+              "output": "PatchImage",
+              "type": "ImagePatchData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "outputs": {
+        "AssembledPatchImage": {
+          "connections": [
+            {
+              "node": 152,
+              "input": "AssembledPatchImage",
+              "type": "MILBufferData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "position": [1310.7562188218685, -44.48585211518622],
+      "name": "AssemblePatches"
+    },
+    "152": {
+      "id": 152,
+      "data": {
+        "algorithm": ["CalculateRoiBlobsAlg"],
+        "executer": "BaseExecuter",
+        "execution_type": "eParallelInvoke"
+      },
+      "module": {},
+      "inputs": {
+        "AssembledPatchImage": {
+          "connections": [
+            {
+              "node": 151,
+              "output": "AssembledPatchImage",
+              "type": "MILBufferData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "outputs": {
+        "ResultROIBlobs": {
+          "connections": [
+            {
+              "node": 153,
+              "input": "ResultROIBlobs",
+              "type": "ROIBlobData",
+              "data": {}
+            }
+          ]
+        },
+        "AssembledPatchImage": {
+          "connections": [
+            {
+              "node": 153,
+              "input": "AssembledPatchImage",
+              "type": "MILBufferData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "position": [1843.6019050977, -44.48555454711561],
+      "name": "CalculateBlobs"
+    },
+    "153": {
+      "id": 153,
+      "data": {},
+      "module": {},
+      "inputs": {
+        "InputBuffer": {
+          "connections": []
+        },
+        "CalibratedBuffer": {
+          "connections": []
+        },
+        "ChanneledBuffer": {
+          "connections": []
+        },
+        "ResultBuffer": {
+          "connections": []
+        },
+        "ResultROIBlobs": {
+          "connections": [
+            {
+              "node": 152,
+              "output": "ResultROIBlobs",
+              "type": "ROIBlobData",
+              "data": {}
+            }
+          ]
+        },
+        "PatchImage": {
+          "connections": []
+        },
+        "AssembledPatchImage": {
+          "connections": [
+            {
+              "node": 152,
+              "output": "AssembledPatchImage",
+              "type": "MILBufferData",
+              "data": {}
+            }
+          ]
+        }
+      },
+      "outputs": {},
+      "position": [2394.7374402742025, -100.57502819513007],
+      "name": "OutputComponent"
+    }
+  }
+}
